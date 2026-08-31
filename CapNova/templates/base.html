@@ -11,180 +11,264 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
+
     <header class="imd-header">
-    <div class="header-top">
-        <div class="brand-section">
-            <div class="emblem-box">
-                <img src="{% static 'assets/base/emblem.png' %}" alt="Government of India Emblem">
+        <div class="header-top">
+
+            <div class="brand-section">
+                <div class="emblem-box">
+                    <img src="{% static 'assets/base/emblem.png' %}" alt="Government of India Emblem">
+                </div>
+                <div class="department-name">
+                    <div>India Meteorological Department</div>
+                    <div>Ministry Of Earth Sciences</div>
+                    <div>Government Of India</div>
+                </div>
             </div>
 
-            <div class="department-name">
-                <div>India Meteorological Department</div>
-                <div>Ministry Of Earth Sciences</div>
-                <div>Government Of India</div>
+            <div class="center-section">
+                <div class="social-row">
+                    <a href="#" aria-label="Facebook" class="social"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="YouTube" class="social"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" aria-label="Twitter" class="social"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram" class="social"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Comments" class="social"><i class="fa-solid fa-comment"></i></a>
+
+                    <!-- Translation feature: Google Website Translator, styled to match the header -->
+                    <div id="google_translate_element" class="translate-widget"></div>
+                </div>
+
+                <div class="search-row">
+                    <input type="search" placeholder="Search here..." aria-label="Search">
+                    <button type="button" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
             </div>
 
-        </div>
-        <div class="center-section">
-            <div class="social-row">
-                <a href="#" aria-label="Facebook" class="social">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-
-                <a href="#" aria-label="YouTube" class="social">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-
-                <a href="#" aria-label="Twitter" class="social">
-                    <i class="fa-brands fa-twitter"></i>
-                </a>
-
-                <a href="#" aria-label="Instagram" class="social">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-
-                <a href="#" aria-label="Comments" class="social">
-                    <i class="fa-solid fa-comment"></i>
-                </a>
-
-                <a href="#" class="hindi-link">
-                    हिन्दी वेबसाइट
-                </a>
-            </div>
-            <div class="search-row">
-
-                <input
-                    type="search"
-                    placeholder="Search here..."
-                    aria-label="Search"
-                >
-
-                <button type="button" aria-label="Search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-
-            </div>
-
-        </div>
-        <div class="logos-section">
-
-            <div class="logo-slot iyc">
-                <img
-                    src="{% static 'assets/base/iyc-2025.png' %}"
-                    alt="International Year of Cooperatives"
-                >
-            </div>
-
-            <div class="logo-slot imd150">
-                <img
-                    src="{% static 'assets/base/imd-150.png' %}"
-                    alt="IMD 150 Years"
-                >
-            </div>
-
-            <div class="logo-slot esso">
-                <img
-                    src="{% static 'assets/base/esso.png' %}"
-                    alt="ESSO"
-                >
-            </div>
-
-            <div class="logo-slot final-logo">
-                <img
-                    src="{% static 'assets/base/logo-placeholder.png' %}"
-                    alt="Organization Logo"
-                >
+            <div class="logos-section">
+                <div class="logo-slot iyc">
+                    <img src="{% static 'assets/base/iyc-2025.png' %}" alt="International Year of Cooperatives">
+                </div>
+                <div class="logo-slot imd150">
+                    <img src="{% static 'assets/base/imd-150.png' %}" alt="IMD 150 Years">
+                </div>
+                <div class="logo-slot esso">
+                    <img src="{% static 'assets/base/esso.png' %}" alt="ESSO">
+                </div>
+                <div class="logo-slot final-logo">
+                    <img src="{% static 'assets/base/logo-placeholder.png' %}" alt="Organization Logo">
+                </div>
             </div>
 
         </div>
 
-    </div>
-    <button
-        class="mobile-menu-button"
-        type="button"
-        aria-label="Open navigation"
-        aria-expanded="false"
-        id="menuButton"
-    >
-        <i class="fa-solid fa-bars"></i>
-        <span>MENU</span>
-    </button>
-    <nav class="main-navigation" id="mainNavigation">
+        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" id="menuButton">
+            <i class="fa-solid fa-bars"></i>
+            <span>MENU</span>
+        </button>
 
-        <a href="#">HOME</a>
-
-        <a href="#">DEPARTMENTAL WEBSITES</a>
-
-        <a href="#">
-            ABOUT IMD
-            <i class="fa-solid fa-caret-down"></i>
-        </a>
-
-        <a href="#">
-            PEOPLE
-            <i class="fa-solid fa-caret-down"></i>
-        </a>
-
-        <a href="#">
-            PUBLICATIONS
-            <i class="fa-solid fa-caret-down"></i>
-        </a>
-
-        <a href="#">
-            SOP
-            <i class="fa-solid fa-caret-down"></i>
-        </a>
-
-        <a href="#">
-            SERVICES
-            <i class="fa-solid fa-caret-down"></i>
-        </a>
-
-        <a href="#">PRESS RELEASE</a>
-
-        <a href="#">CONTACTS</a>
-
-        <a href="#">
-            LOCAL FORECAST
-            <i class="fa-solid fa-caret-down"></i>
-        </a>
-
-        <a href="#">IMD@150</a>
-
-        <a href="#">IMD API</a>
-
-    </nav>
-
-</header>
-
-
-<script>
-    const menuButton = document.getElementById("menuButton");
-    const navigation = document.getElementById("mainNavigation");
-
-    menuButton.addEventListener("click", function () {
-
-        const isOpen = navigation.classList.toggle("active");
-
-        menuButton.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-        );
-
-        menuButton.querySelector("i").className =
-            isOpen
-                ? "fa-solid fa-xmark"
-                : "fa-solid fa-bars";
-    });
-</script>
-
+        <nav class="main-navigation" id="mainNavigation">
+            <a href="#">HOME</a>
+            <a href="#">DEPARTMENTAL WEBSITES</a>
+            <a href="#">ABOUT IMD <i class="fa-solid fa-caret-down"></i></a>
+            <a href="#">PEOPLE <i class="fa-solid fa-caret-down"></i></a>
+            <a href="#">PUBLICATIONS <i class="fa-solid fa-caret-down"></i></a>
+            <a href="#">SOP <i class="fa-solid fa-caret-down"></i></a>
+            <a href="#">SERVICES <i class="fa-solid fa-caret-down"></i></a>
+            <a href="#">PRESS RELEASE</a>
+            <a href="#">CONTACTS</a>
+            <a href="#">LOCAL FORECAST <i class="fa-solid fa-caret-down"></i></a>
+            <a href="#">IMD@150</a>
+            <a href="#">IMD API</a>
+        </nav>
     </header>
+
     <main>
         {% block content %}
         {% endblock %}
     </main>
-    <footer>
-        <p style="text-align: center;">&copy; 2023 CapnNova. All rights reserved.</p>
+
+    <footer class="imd-footer">
+        <div class="footer-container">
+
+            <!-- COLUMN 1 -->
+            <div class="footer-column footer-forecasts">
+                <h3>FORECASTS</h3>
+                <a href="#">Urban Meteorological Services</a>
+                <a href="#">Short to Medium Range Model Guidance</a>
+                <a href="#">Extended Range Model Guidance</a>
+                <a href="#">Seasonal Forecast</a>
+                <a href="#">Quantitative Precipitation Forecast</a>
+                <a href="#">Latest CAP Alerts</a>
+
+                <div class="footer-subsection">
+                    <h3>FOR HISTORICAL DATA RELATED QUERY</h3>
+                    <p>1. Mr. Ranjan Phukan, Sc. D</p>
+                    <p>Contact No: <a href="tel:+919435669264">+91 9435669264</a></p>
+                    <p>ranjan.phukan[at]imd[dot]gov[dot]in</p>
+                </div>
+            </div>
+
+            <!-- COLUMN 2 -->
+            <div class="footer-column">
+                <h3>SPECIALISED PRODUCTS &amp; FORECASTS</h3>
+
+                <div class="footer-link-row">
+                    <a href="#">Cyclones</a><span>|</span>
+                    <a href="#">Monsoon</a><span>|</span>
+                    <a href="#">Satellite</a>
+                </div>
+                <div class="footer-link-row">
+                    <a href="#">Radar</a><span>|</span>
+                    <a href="#">Rainfall</a><span>|</span>
+                    <a href="#">Agromet Advisories</a>
+                </div>
+                <div class="footer-link-row">
+                    <span>MAUSAM:</span>
+                    <a href="#" class="footer-app green">●</a><span>|</span>
+                    <a href="#" class="footer-app red">●</a><span>|</span>
+                    <a href="#">Video</a>
+                </div>
+                <div class="footer-link-row">
+                    <span>Meghdoot Agro:</span>
+                    <a href="#" class="footer-app green">●</a><span>|</span>
+                    <a href="#" class="footer-app red">●</a><span>|</span>
+                    <a href="#">Video</a>
+                </div>
+                <div class="footer-link-row">
+                    <span>Damini Lightning:</span>
+                    <a href="#" class="footer-app green">●</a><span>|</span>
+                    <a href="#" class="footer-app red">●</a>
+                </div>
+                <div class="footer-link-row">
+                    <span>UMANG:</span>
+                    <a href="#" class="footer-app green">●</a><span>|</span>
+                    <a href="#" class="footer-app red">●</a>
+                </div>
+
+                <a href="#" class="footer-data-link">Data Service Portal - Meteorological Data</a>
+            </div>
+
+            <!-- COLUMN 3 -->
+            <div class="footer-column">
+                <h3>MISCELLANEOUS</h3>
+
+                <div class="footer-link-row">
+                    <a href="#">Citizen's Charter</a><span>|</span>
+                    <a href="#">संगोष्ठी</a>
+                </div>
+                <a href="#">Frequently Asked Questions</a>
+                <div class="footer-link-row">
+                    <a href="#">RTI</a><span>|</span>
+                    <a href="#">Feedback</a><span>|</span>
+                    <a href="#">Internal Complaint Committee</a>
+                </div>
+                <a href="#">Sexual Harassment complaint portal</a>
+                <div class="footer-link-row">
+                    <a href="#">Weather Video</a><span>|</span>
+                    <a href="#">GKMS News Letter</a>
+                </div>
+                <div class="footer-link-row">
+                    <a href="#">Database Login</a><span>|</span>
+                    <a href="#">Admin Login</a>
+                </div>
+                <div class="footer-link-row">
+                    <a href="#">Tenders</a><span>|</span>
+                    <a href="#">WMO recruitment</a><span>|</span>
+                    <a href="#">Circulars</a>
+                </div>
+                <div class="footer-link-row">
+                    <a href="#">Recruitment</a><span>|</span>
+                    <a href="#">Compassionate Appointment</a>
+                </div>
+                <a href="#">Immovable Property Return</a>
+                <div class="footer-link-row">
+                    <a href="#">Disclaimer</a><span>|</span>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+
+            <!-- COLUMN 4 -->
+            <div class="footer-column footer-contact">
+                <h3>CONTACT US</h3>
+                <p>Office of Director General of Meteorology</p>
+                <p>India Meteorological Department (IMD)</p>
+                <p>Mausam Bhawan, Lodhi Road</p>
+                <p>New Delhi - 110003</p>
+
+                <h3 class="media-heading">WEATHER RELATED QUERY FOR MEDIA</h3>
+                <strong>Query Time: 10:00am to 5:00pm</strong>
+
+                <div class="media-person">
+                    <p>1. Dr. Naresh Kumar, Sc. F</p>
+                    <p>Contact No: <a href="tel:+919968680077">+91 9968680077</a></p>
+                    <p>naresh.nach[at]gmail[dot]com</p>
+                </div>
+                <div class="media-person">
+                    <p>2. Dr. Akhil Srivastava, Sc. D</p>
+                    <p>Contact No: <a href="tel:+918285281968">+91 8285281968</a>,</p>
+                    <p>akhil.srivastava[at]imd[dot]gov[dot]in</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-social">
+                    <a href="#" aria-label="Facebook" class="social"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="YouTube" class="social"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" aria-label="Twitter" class="social"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram" class="social"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Comments" class="social"><i class="fa-solid fa-comment"></i></a>
+        </div>
+
+        <div class="footer-copyright">
+            <p>© Copyright 2026, Developed by IT Team, India Meteorological Department</p>
+            <p>Ministry of Earth Sciences, New Delhi, India</p>
+        </div>
     </footer>
+
+    <!-- Site-wide back-to-top button (fixed, shows once the user scrolls) -->
+    <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile navigation toggle
+        const menuButton = document.getElementById("menuButton");
+        const navigation = document.getElementById("mainNavigation");
+
+        menuButton.addEventListener("click", () => {
+            const isOpen = navigation.classList.toggle("active");
+            menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            menuButton.querySelector("i").className = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+        });
+
+        // Back-to-top: show after scrolling, smooth-scroll on click
+        const backToTop = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", () => {
+            backToTop.classList.toggle("show", window.scrollY > 300);
+        }, { passive: true });
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+
+    <!-- Translation feature: Google Website Translator -->
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: "en",
+                    includedLanguages: "hi,bn,ta,te,mr,gu,kn,ml,pa,or,as,ur,en",
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    autoDisplay: false
+                },
+                "google_translate_element"
+            );
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>

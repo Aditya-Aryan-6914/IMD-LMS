@@ -164,7 +164,7 @@ Before you begin, ensure you have the following installed on your system:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/CapNova.git
+git clone https://github.com/Aditya-Aryan-6914/IMD-LMS.git
 cd CapNova
 ```
 
