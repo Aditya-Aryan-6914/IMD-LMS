@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,24 +11,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <header>
-    
-
-<header class="imd-header">
-
-    <!-- =========================================
-         TOP HEADER
-    ========================================== -->
+    <header class="imd-header">
     <div class="header-top">
-
-        <!-- BRAND -->
         <div class="brand-section">
-
             <div class="emblem-box">
-                <img
-                    src="assets/emblem.png"
-                    alt="Government of India Emblem"
-                >
+                <img src="{% static 'assets/base/emblem.png' %}" alt="Government of India Emblem">
             </div>
 
             <div class="department-name">
@@ -37,15 +25,8 @@
             </div>
 
         </div>
-
-
-        <!-- =====================================
-             CENTER SEARCH / SOCIAL
-        ====================================== -->
         <div class="center-section">
-
             <div class="social-row">
-
                 <a href="#" aria-label="Facebook" class="social">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
@@ -69,10 +50,7 @@
                 <a href="#" class="hindi-link">
                     हिन्दी वेबसाइट
                 </a>
-
             </div>
-
-
             <div class="search-row">
 
                 <input
@@ -88,37 +66,32 @@
             </div>
 
         </div>
-
-
-        <!-- =====================================
-             RIGHT LOGOS
-        ====================================== -->
         <div class="logos-section">
 
             <div class="logo-slot iyc">
                 <img
-                    src="assets/iyc-2025.png"
+                    src="{% static 'assets/base/iyc-2025.png' %}"
                     alt="International Year of Cooperatives"
                 >
             </div>
 
             <div class="logo-slot imd150">
                 <img
-                    src="assets/imd-150.png"
+                    src="{% static 'assets/base/imd-150.png' %}"
                     alt="IMD 150 Years"
                 >
             </div>
 
             <div class="logo-slot esso">
                 <img
-                    src="assets/esso.png"
+                    src="{% static 'assets/base/esso.png' %}"
                     alt="ESSO"
                 >
             </div>
 
             <div class="logo-slot final-logo">
                 <img
-                    src="assets/logo-placeholder.png"
+                    src="{% static 'assets/base/logo-placeholder.png' %}"
                     alt="Organization Logo"
                 >
             </div>
@@ -126,11 +99,6 @@
         </div>
 
     </div>
-
-
-    <!-- =========================================
-         MOBILE MENU BUTTON
-    ========================================== -->
     <button
         class="mobile-menu-button"
         type="button"
@@ -141,11 +109,6 @@
         <i class="fa-solid fa-bars"></i>
         <span>MENU</span>
     </button>
-
-
-    <!-- =========================================
-         NAVIGATION
-    ========================================== -->
     <nav class="main-navigation" id="mainNavigation">
 
         <a href="#">HOME</a>
