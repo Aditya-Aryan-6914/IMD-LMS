@@ -1,0 +1,959 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+    --imd-purple: #362da3;
+    --imd-purple-dark: #28217e;
+    --imd-purple-darker: #211b67;
+
+    --white: #ffffff;
+    --border: rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================================================
+   MAIN HEADER
+========================================================= */
+
+.imd-header {
+    width: 100%;
+
+    background: var(--imd-purple);
+
+    color: var(--white);
+
+    position: relative;
+}
+
+
+/* =========================================================
+   TOP HEADER
+========================================================= */
+
+.header-top {
+    width: 100%;
+    min-height: 143px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    padding: 5px 12px 0;
+}
+
+
+/* =========================================================
+   BRAND / LEFT SIDE
+========================================================= */
+
+.brand-section {
+    width: 410px;
+    min-width: 410px;
+
+    display: flex;
+    align-items: center;
+
+    z-index: 2;
+}
+
+.emblem-box {
+    width: 58px;
+    min-width: 58px;
+
+    height: 85px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emblem-box img {
+    width: 52px;
+    max-height: 82px;
+
+    height: auto;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+.department-name {
+    margin-left: 7px;
+
+    color: white;
+
+    font-size: 17px;
+
+    line-height: 24px;
+
+    font-weight: 400;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CENTER AREA
+========================================================= */
+
+.center-section {
+    position: absolute;
+
+    top: 7px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 365px;
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   SOCIAL ICONS
+========================================================= */
+
+.social-row {
+    width: 100%;
+
+    min-height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+}
+
+.social {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #dcdcff;
+
+    background: #252070;
+
+    border: 1px solid #171451;
+
+    border-radius: 4px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.social:hover {
+    background: #1c185e;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   HINDI BUTTON
+========================================================= */
+
+.hindi-link {
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 8px;
+
+    margin-left: 2px;
+
+    background: white;
+
+    color: red;
+
+    border: 1px solid #d0d0d0;
+
+    border-radius: 3px;
+
+    font-size: 14px;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-row {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 4px;
+
+    margin-top: 8px;
+}
+
+.search-row input {
+    width: 210px;
+    height: 33px;
+
+    border: 1px solid #cfcfcf;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #333333;
+
+    outline: none;
+
+    padding: 0 12px;
+
+    font-size: 16px;
+}
+
+.search-row input::placeholder {
+    color: #555555;
+}
+
+.search-row input:focus {
+    border-color: #ffffff;
+
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+}
+
+.search-row button {
+    width: 49px;
+    height: 33px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    color: white;
+
+    border: 1px solid white;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    transition: background 0.2s ease;
+}
+
+.search-row button:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+
+/* =========================================================
+   RIGHT LOGOS
+========================================================= */
+
+.logos-section {
+    margin-left: auto;
+
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding-right: 1px;
+
+    z-index: 2;
+}
+
+.logo-slot {
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.logo-slot img {
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    max-width: 100%;
+    max-height: 70px;
+
+    object-fit: contain;
+}
+
+
+/* IYC */
+
+.logo-slot.iyc {
+    width: 90px;
+}
+
+.logo-slot.iyc img {
+    max-height: 59px;
+}
+
+
+/* IMD 150 */
+
+.logo-slot.imd150 {
+    width: 93px;
+}
+
+.logo-slot.imd150 img {
+    max-height: 68px;
+}
+
+
+/* ESSO */
+
+.logo-slot.esso {
+    width: 65px;
+}
+
+.logo-slot.esso img {
+    max-height: 68px;
+}
+
+
+/* LAST LOGO */
+
+.logo-slot.final-logo {
+    width: 45px;
+}
+
+.logo-slot.final-logo img {
+    max-height: 70px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.main-navigation {
+    width: 100%;
+    min-height: 38px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 23px;
+
+    overflow: hidden;
+}
+
+.main-navigation a {
+    min-height: 38px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 12px;
+
+    color: white;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+
+    font-weight: 400;
+
+    transition: background 0.15s ease;
+}
+
+.main-navigation a:hover {
+    background: rgba(0,0,0,0.12);
+}
+
+.main-navigation a i {
+    margin-left: 5px;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.mobile-menu-button {
+    display: none;
+
+    width: 100%;
+
+    height: 44px;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border: 0;
+
+    background: var(--imd-purple-dark);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+
+/* =========================================================
+   LARGE TABLET
+   992px - 1199px
+========================================================= */
+
+@media (max-width: 1199px) {
+
+    .header-top {
+        min-height: 135px;
+
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .brand-section {
+        width: 350px;
+        min-width: 350px;
+    }
+
+    .department-name {
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    .center-section {
+        width: 330px;
+    }
+
+    .search-row input {
+        width: 185px;
+    }
+
+    .logos-section {
+        gap: 3px;
+    }
+
+    .logo-slot.iyc {
+        width: 78px;
+    }
+
+    .logo-slot.imd150 {
+        width: 80px;
+    }
+
+    .logo-slot.esso {
+        width: 57px;
+    }
+
+    .logo-slot.final-logo {
+        width: 40px;
+    }
+
+    .main-navigation {
+        padding: 0 12px;
+    }
+
+    .main-navigation a {
+        padding-left: 7px;
+        padding-right: 7px;
+
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   768px - 991px
+========================================================= */
+
+@media (max-width: 991px) {
+
+    .header-top {
+        min-height: 175px;
+
+        display: grid;
+
+        grid-template-columns: 1fr auto;
+
+        grid-template-rows: 90px 70px;
+
+        padding: 8px 15px;
+    }
+
+
+    /* Brand */
+
+    .brand-section {
+        width: auto;
+        min-width: 0;
+
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .department-name {
+        font-size: 16px;
+    }
+
+
+    /* Logos */
+
+    .logos-section {
+        grid-column: 2;
+        grid-row: 1;
+
+        height: 80px;
+
+        max-width: 350px;
+
+        overflow-x: auto;
+
+        scrollbar-width: none;
+    }
+
+    .logos-section::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    /* Center */
+
+    .center-section {
+        position: static;
+
+        transform: none;
+
+        width: auto;
+
+        grid-column: 1 / -1;
+        grid-row: 2;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 20px;
+    }
+
+    .social-row {
+        width: auto;
+    }
+
+    .search-row {
+        width: auto;
+
+        margin-top: 0;
+    }
+
+
+    /* Navigation */
+
+    .main-navigation {
+        overflow-x: auto;
+
+        scrollbar-width: thin;
+    }
+
+    .main-navigation a {
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   BELOW 767px
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .imd-header {
+        min-width: 0;
+    }
+
+
+    /* =========================================
+       TOP
+    ========================================= */
+
+    .header-top {
+        min-height: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: stretch;
+
+        padding: 10px 12px 0;
+    }
+
+
+    /* =========================================
+       BRAND
+    ========================================= */
+
+    .brand-section {
+        width: 100%;
+        min-width: 0;
+
+        height: auto;
+
+        justify-content: center;
+
+        padding: 5px 0 10px;
+    }
+
+    .emblem-box {
+        width: 50px;
+        min-width: 50px;
+
+        height: 70px;
+    }
+
+    .emblem-box img {
+        width: 46px;
+
+        max-height: 70px;
+    }
+
+    .department-name {
+        margin-left: 8px;
+
+        font-size: clamp(13px, 3.8vw, 16px);
+
+        line-height: 21px;
+
+        white-space: normal;
+    }
+
+
+    /* =========================================
+       SOCIAL + SEARCH
+    ========================================= */
+
+    .center-section {
+        position: static;
+
+        transform: none;
+
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 8px;
+
+        padding: 3px 0 10px;
+    }
+
+    .social-row {
+        width: 100%;
+
+        min-height: 31px;
+
+        justify-content: center;
+    }
+
+    .social {
+        width: 29px;
+        height: 29px;
+
+        font-size: 14px;
+    }
+
+    .hindi-link {
+        height: 29px;
+
+        font-size: 13px;
+
+        padding: 0 7px;
+    }
+
+    .search-row {
+        width: 100%;
+
+        margin-top: 0;
+
+        justify-content: center;
+    }
+
+    .search-row input {
+        width: min(70vw, 260px);
+
+        height: 34px;
+
+        font-size: 15px;
+    }
+
+    .search-row button {
+        width: 45px;
+
+        height: 34px;
+    }
+
+
+    /* =========================================
+       LOGOS
+    ========================================= */
+
+    .logos-section {
+        width: 100%;
+
+        max-width: none;
+
+        height: 74px;
+
+        margin: 0;
+
+        padding: 3px 8px;
+
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        gap: 12px;
+
+        border-top: 1px solid rgba(255,255,255,0.12);
+
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+
+        scrollbar-width: none;
+    }
+
+    .logos-section::-webkit-scrollbar {
+        display: none;
+    }
+
+    .logo-slot {
+        height: 65px;
+    }
+
+
+    /* =========================================
+       MOBILE MENU
+    ========================================= */
+
+    .mobile-menu-button {
+        display: flex;
+    }
+
+
+    /* =========================================
+       NAVIGATION
+    ========================================= */
+
+    .main-navigation {
+        display: none;
+
+        width: 100%;
+
+        height: auto;
+
+        min-height: 0;
+
+        padding: 0;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        overflow: visible;
+
+        background: var(--imd-purple-dark);
+    }
+
+    .main-navigation.active {
+        display: flex;
+    }
+
+    .main-navigation a {
+        width: 100%;
+
+        min-height: 44px;
+
+        height: 44px;
+
+        padding: 0 18px;
+
+        justify-content: space-between;
+
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+
+        font-size: 13px;
+    }
+
+    .main-navigation a:hover {
+        background: rgba(0,0,0,0.18);
+    }
+
+    .main-navigation a i {
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   BELOW 480px
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .header-top {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .brand-section {
+        justify-content: flex-start;
+    }
+
+    .emblem-box {
+        width: 45px;
+        min-width: 45px;
+    }
+
+    .emblem-box img {
+        width: 42px;
+    }
+
+    .department-name {
+        font-size: 12.5px;
+
+        line-height: 19px;
+    }
+
+
+    .social-row {
+        gap: 3px;
+    }
+
+    .social {
+        width: 28px;
+        height: 28px;
+    }
+
+    .hindi-link {
+        font-size: 12px;
+
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+
+    .search-row input {
+        width: calc(100% - 55px);
+
+        max-width: none;
+    }
+
+    .search-row button {
+        width: 45px;
+    }
+
+
+    .logos-section {
+        gap: 10px;
+    }
+
+    .logo-slot.iyc {
+        width: 78px;
+    }
+
+    .logo-slot.imd150 {
+        width: 82px;
+    }
+
+    .logo-slot.esso {
+        width: 58px;
+    }
+
+    .logo-slot.final-logo {
+        width: 42px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+   BELOW 360px
+========================================================= */
+
+@media (max-width: 359px) {
+
+    .department-name {
+        font-size: 11.5px;
+
+        line-height: 18px;
+    }
+
+    .social {
+        width: 26px;
+        height: 26px;
+
+        font-size: 12px;
+    }
+
+    .hindi-link {
+        font-size: 11px;
+    }
+}

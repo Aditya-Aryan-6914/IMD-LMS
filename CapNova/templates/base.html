@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CapnNova - Digital Capacity Building and Learning Management Portal{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block head %}
+    {% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header>
+    
+
+<header class="imd-header">
+
+    <!-- =========================================
+         TOP HEADER
+    ========================================== -->
+    <div class="header-top">
+
+        <!-- BRAND -->
+        <div class="brand-section">
+
+            <div class="emblem-box">
+                <img
+                    src="assets/emblem.png"
+                    alt="Government of India Emblem"
+                >
+            </div>
+
+            <div class="department-name">
+                <div>India Meteorological Department</div>
+                <div>Ministry Of Earth Sciences</div>
+                <div>Government Of India</div>
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             CENTER SEARCH / SOCIAL
+        ====================================== -->
+        <div class="center-section">
+
+            <div class="social-row">
+
+                <a href="#" aria-label="Facebook" class="social">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="YouTube" class="social">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+                <a href="#" aria-label="Twitter" class="social">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram" class="social">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="Comments" class="social">
+                    <i class="fa-solid fa-comment"></i>
+                </a>
+
+                <a href="#" class="hindi-link">
+                    हिन्दी वेबसाइट
+                </a>
+
+            </div>
+
+
+            <div class="search-row">
+
+                <input
+                    type="search"
+                    placeholder="Search here..."
+                    aria-label="Search"
+                >
+
+                <button type="button" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             RIGHT LOGOS
+        ====================================== -->
+        <div class="logos-section">
+
+            <div class="logo-slot iyc">
+                <img
+                    src="assets/iyc-2025.png"
+                    alt="International Year of Cooperatives"
+                >
+            </div>
+
+            <div class="logo-slot imd150">
+                <img
+                    src="assets/imd-150.png"
+                    alt="IMD 150 Years"
+                >
+            </div>
+
+            <div class="logo-slot esso">
+                <img
+                    src="assets/esso.png"
+                    alt="ESSO"
+                >
+            </div>
+
+            <div class="logo-slot final-logo">
+                <img
+                    src="assets/logo-placeholder.png"
+                    alt="Organization Logo"
+                >
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         MOBILE MENU BUTTON
+    ========================================== -->
+    <button
+        class="mobile-menu-button"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        id="menuButton"
+    >
+        <i class="fa-solid fa-bars"></i>
+        <span>MENU</span>
+    </button>
+
+
+    <!-- =========================================
+         NAVIGATION
+    ========================================== -->
+    <nav class="main-navigation" id="mainNavigation">
+
+        <a href="#">HOME</a>
+
+        <a href="#">DEPARTMENTAL WEBSITES</a>
+
+        <a href="#">
+            ABOUT IMD
+            <i class="fa-solid fa-caret-down"></i>
+        </a>
+
+        <a href="#">
+            PEOPLE
+            <i class="fa-solid fa-caret-down"></i>
+        </a>
+
+        <a href="#">
+            PUBLICATIONS
+            <i class="fa-solid fa-caret-down"></i>
+        </a>
+
+        <a href="#">
+            SOP
+            <i class="fa-solid fa-caret-down"></i>
+        </a>
+
+        <a href="#">
+            SERVICES
+            <i class="fa-solid fa-caret-down"></i>
+        </a>
+
+        <a href="#">PRESS RELEASE</a>
+
+        <a href="#">CONTACTS</a>
+
+        <a href="#">
+            LOCAL FORECAST
+            <i class="fa-solid fa-caret-down"></i>
+        </a>
+
+        <a href="#">IMD@150</a>
+
+        <a href="#">IMD API</a>
+
+    </nav>
+
+</header>
+
+
+<script>
+    const menuButton = document.getElementById("menuButton");
+    const navigation = document.getElementById("mainNavigation");
+
+    menuButton.addEventListener("click", function () {
+
+        const isOpen = navigation.classList.toggle("active");
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
+
+        menuButton.querySelector("i").className =
+            isOpen
+                ? "fa-solid fa-xmark"
+                : "fa-solid fa-bars";
+    });
+</script>
+
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p style="text-align: center;">&copy; 2023 CapnNova. All rights reserved.</p>
+    </footer>
+</body>
+</html>
