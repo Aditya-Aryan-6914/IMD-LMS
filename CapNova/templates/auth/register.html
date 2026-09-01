@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Register{% endblock %}
+{% block title %}IMD Mausam -Register{% endblock %}
 
 
 {% block content %}
@@ -77,6 +77,19 @@
               <input type="tel" id="phone" name="phone" required placeholder="10-digit mobile" pattern="[0-9]{10}" />
             </div>
           </div>
+          <div class="form-field">
+            <div class="field-label-row">
+              <label for="password">Password</label>
+            </div>
+            <input type="password" id="password" name="password" required placeholder="Set your password" autocomplete="current-password" />
+          </div>
+          <div class="form-field">
+            <div class="field-label-row">
+              <label for="confirm_password">Confirm Password</label>
+            </div>
+            <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm your password" autocomplete="current-password" />
+          </div>
+
 
           <button type="submit" class="submit-btn">Register</button>
         </form>
