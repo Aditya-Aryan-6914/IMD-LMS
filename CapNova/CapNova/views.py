@@ -2,5 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 
-def home(request):
-    return render(request, 'auth/index.html')
+def register(request):
+    return render(request, 'auth/register.html')
+
+def login(request):
+    return render(request,'auth/login.html')

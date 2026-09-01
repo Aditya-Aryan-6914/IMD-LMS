@@ -1,0 +1,461 @@
+.register-main {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #0f172a;
+}
+
+.register-main .hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.register-main .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(2, 6, 23, 0.75),
+    rgba(15, 23, 42, 0.45),
+    rgba(2, 6, 23, 0.7)
+  );
+}
+
+.register-main .content-wrap {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 4rem 1.5rem;
+}
+
+.register-main .content-grid {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 72rem;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.register-main .hero-copy {
+  display: none;
+}
+
+.register-main .hero-copy .eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #fbbf24;
+}
+
+.register-main .hero-copy h1 {
+  margin-top: 1rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.register-main .hero-copy p {
+  margin-top: 1rem;
+  max-width: 28rem;
+  color: #e2e8f0;
+}
+
+.register-card {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 28rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.register-card h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  color: #0f172a;
+  font-weight: 400;
+  margin: 0;
+}
+
+.register-card .subtitle {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.tabs {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: #f1f5f9;
+  padding: 0.25rem;
+}
+
+.tab-btn {
+  border: 0;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+  background: transparent;
+}
+
+.tab-btn.is-active {
+  background-color: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.register-form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+.form-field input {
+  margin-top: 0.25rem;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: #0f172a;
+}
+
+.form-field input::placeholder {
+  color: #94a3b8;
+}
+
+.form-field input:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 1px #1d4ed8;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-row.is-hidden {
+  display: none;
+}
+
+.submit-btn {
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background-color: #1e3a8a;
+  padding: 0.65rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  transition: background-color 0.15s ease;
+}
+
+.submit-btn:hover {
+  background-color: #1e40af;
+}
+
+.login-hint {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.login-hint a {
+  font-weight: 500;
+  color: #1e40af;
+  text-decoration: none;
+}
+
+.login-hint a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 1024px) {
+  .register-main .content-grid {
+    grid-template-columns: 1fr 460px;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .register-main .hero-copy {
+    display: block;
+  }
+
+  .register-card {
+    margin: 0;
+    margin-left: auto;
+  }
+}
+.register-main {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #0f172a;
+}
+
+.register-main .hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.register-main .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(2, 6, 23, 0.75),
+    rgba(15, 23, 42, 0.45),
+    rgba(2, 6, 23, 0.7)
+  );
+}
+
+.register-main .content-wrap {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 4rem 1.5rem;
+}
+
+.register-main .content-grid {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 72rem;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.register-main .hero-copy {
+  display: none;
+}
+
+.register-main .hero-copy .eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #fbbf24;
+}
+
+.register-main .hero-copy h1 {
+  margin-top: 1rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.register-main .hero-copy p {
+  margin-top: 1rem;
+  max-width: 28rem;
+  color: #e2e8f0;
+}
+
+.register-card {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 28rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.register-card h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  color: #0f172a;
+  font-weight: 400;
+  margin: 0;
+}
+
+.register-card .subtitle {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.tabs {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: #f1f5f9;
+  padding: 0.25rem;
+}
+
+.tab-btn {
+  border: 0;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+  background: transparent;
+}
+
+.tab-btn.is-active {
+  background-color: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.register-form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+.field-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.field-label-row label {
+  margin: 0;
+}
+
+.forgot-link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #1e40af;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.form-field input {
+  margin-top: 0.25rem;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: #0f172a;
+}
+
+.form-field input::placeholder {
+  color: #94a3b8;
+}
+
+.form-field input:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 1px #1d4ed8;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.submit-btn {
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background-color: #1e3a8a;
+  padding: 0.65rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  transition: background-color 0.15s ease;
+}
+
+.submit-btn:hover {
+  background-color: #1e40af;
+}
+
+.login-hint {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.login-hint a {
+  font-weight: 500;
+  color: #1e40af;
+  text-decoration: none;
+}
+
+.login-hint a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 1024px) {
+  .register-main .content-grid {
+    grid-template-columns: 1fr 460px;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .register-main .hero-copy {
+    display: block;
+  }
+
+  .register-card {
+    margin: 0;
+    margin-left: auto;
+  }
+}
