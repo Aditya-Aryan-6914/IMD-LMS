@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Admin dashboard{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>Admin dashboard</h1>
+      <p>User approvals, course &amp; participation overview.</p>
+    </div>
+    <a href="{% url 'logout' %}" class="btn btn-outline">Log out</a>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  <nav class="dash-nav">
+    <a href="{% url 'admin_dashboard' %}">Overview</a>
+    <a href="{% url 'competency_map' %}">Competency map</a>
+    <a href="/admin/">Full admin (courses, announcements, questionnaires)</a>
+  </nav>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="value">{{ total_trainees }}</div><div class="label">Trainees</div></div>
+    <div class="stat-card"><div class="value">{{ total_trainers }}</div><div class="label">Trainers</div></div>
+    <div class="stat-card"><div class="value">{{ total_courses }}</div><div class="label">Courses</div></div>
+    <div class="stat-card"><div class="value">{{ total_enrollments }}</div><div class="label">Enrollments</div></div>
+    <div class="stat-card"><div class="value">{{ total_subjects }}</div><div class="label">Subjects</div></div>
+  </div>
+
+  <div class="panel">
+    <h2>Pending approvals</h2>
+    {% if pending_users %}
+      <table class="dash-table">
+        <thead>
+          <tr><th>Name</th><th>Email</th><th>Role</th><th>Employee ID</th><th></th></tr>
+        </thead>
+        <tbody>
+          {% for u in pending_users %}
+            <tr>
+              <td>{{ u.full_name }}</td>
+              <td>{{ u.email }}</td>
+              <td><span class="badge {{ u.role }}">{{ u.get_role_display }}</span></td>
+              <td>{{ u.employee_id|default:"—" }}</td>
+              <td>
+                <form method="post" action="{% url 'approve_user' u.id %}" style="display:inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-primary">Approve</button>
+                </form>
+                <form method="post" action="{% url 'reject_user' u.id %}" style="display:inline;"
+                      onsubmit="return confirm('Reject and delete this registration?');">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Reject</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="empty-state">No pending approvals.</p>
+    {% endif %}
+  </div>
+
+  <div class="panel">
+    <h2>Manage content</h2>
+    <p class="meta">
+      Courses, learning resources, questionnaires and homepage announcements
+      are currently managed from the
+      <a href="/admin/" class="forgot-link">Django admin</a> while dedicated
+      in-app screens are built out (see handover.md).
+    </p>
+  </div>
+</div>
+{% endblock %}

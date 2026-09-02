@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'accounts',
+    'courses',
+    'assessments',
+    'announcements',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +72,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'CapNova.wsgi.application'
+
+# Custom user model (email-based, with role/approval fields). This must be
+# set before the first `makemigrations` -- see handover.md.
+AUTH_USER_MODEL = 'accounts.User'
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'login'
 
 
 # Database
@@ -115,11 +128,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Media files (trainer library uploads, profile photos)
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Email

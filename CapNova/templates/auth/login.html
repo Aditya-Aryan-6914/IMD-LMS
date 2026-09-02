@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}IMD Mausam -Login{% endblock %}
+{% block title %}IMD Mausam - Login{% endblock %}
 
 
 {% block content %}
@@ -28,7 +28,9 @@
       <div class="register-card">
         <h2>Log in to your account</h2>
         <p class="subtitle">Enter your registered email and password.</p>
-<!-- action="% url 'login' %"-->
+
+        {% include 'partials/messages.html' %}
+
         <form method="post" class="register-form" novalidate>
           {% csrf_token %}
 

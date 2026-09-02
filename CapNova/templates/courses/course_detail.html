@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>{{ course.title }}</h1>
+      <p>{{ course.subject.name }} &middot; Trainer: {{ course.trainer.full_name|default:"Unassigned" }}</p>
+    </div>
+    <a href="{% url 'course_list' %}" class="btn btn-outline">Back to courses</a>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  <div class="panel">
+    <h2>About this course</h2>
+    <p>{{ course.description|default:"No description provided yet." }}</p>
+
+    {% if not enrollment %}
+      <form method="post" action="{% url 'enroll_course' course.id %}" style="margin-top:1rem;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Enroll in this course</button>
+      </form>
+    {% else %}
+      <p class="badge approved" style="margin-top:0.5rem;">Enrolled &middot; {{ enrollment.get_status_display }}</p>
+    {% endif %}
+  </div>
+
+  {% if enrollment %}
+    <div class="panel">
+      <h2>Trainer library</h2>
+      {% if resources %}
+        <ul class="item-list">
+          {% for resource in resources %}
+            <li class="item-row">
+              <div>
+                <div class="title">{{ resource.title }}</div>
+                <div class="meta">{{ resource.get_resource_type_display }}</div>
+              </div>
+              <a href="{{ resource.file.url }}" class="btn btn-outline">Open</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="empty-state">No materials uploaded for this course yet.</p>
+      {% endif %}
+    </div>
+
+    <div class="panel">
+      <h2>Course feedback</h2>
+      {% if feedback_form %}
+        <form method="post" class="register-form" style="max-width:420px;">
+          {% csrf_token %}
+          <div class="form-field">
+            <label for="{{ feedback_form.rating.id_for_label }}">Rating (1-5)</label>
+            {{ feedback_form.rating }}
+          </div>
+          <div class="form-field">
+            <label for="{{ feedback_form.comment.id_for_label }}">Comment</label>
+            {{ feedback_form.comment }}
+          </div>
+          <button type="submit" class="submit-btn" style="width:auto;">Submit feedback</button>
+        </form>
+      {% else %}
+        <p class="empty-state">You rated this course {{ existing_feedback.rating }}/5. Thanks for the feedback.</p>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

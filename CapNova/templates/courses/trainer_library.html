@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Trainer library{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>Trainer library</h1>
+      <p>Upload recorded lectures, presentations and study material.</p>
+    </div>
+    <a href="{% url 'trainer_dashboard' %}" class="btn btn-outline">Back to dashboard</a>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  <div class="panel">
+    <h2>Upload new material</h2>
+    {% if form.course.field.queryset.exists %}
+      <form method="post" enctype="multipart/form-data" class="register-form" style="max-width:520px;">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="form-field">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}<div class="field-error">{{ field.errors.0 }}</div>{% endif %}
+          </div>
+        {% endfor %}
+        <button type="submit" class="submit-btn" style="width:auto;">Upload</button>
+      </form>
+    {% else %}
+      <p class="empty-state">You don't have any assigned courses to upload material to yet.</p>
+    {% endif %}
+  </div>
+
+  <div class="panel">
+    <h2>Your uploads</h2>
+    {% if resources %}
+      <ul class="item-list">
+        {% for resource in resources %}
+          <li class="item-row">
+            <div>
+              <div class="title">{{ resource.title }}</div>
+              <div class="meta">{{ resource.course.title }} &middot; {{ resource.get_resource_type_display }} &middot; {{ resource.uploaded_at|date:"d M Y" }}</div>
+            </div>
+            <a href="{{ resource.file.url }}" class="btn btn-outline">Open</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty-state">Nothing uploaded yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

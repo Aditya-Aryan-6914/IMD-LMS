@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Result{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>{{ attempt.questionnaire.title }}</h1>
+      <p>{{ attempt.questionnaire.course.title }}</p>
+    </div>
+    <a href="{% url 'questionnaire_list' %}" class="btn btn-outline">Back to assessments</a>
+  </div>
+
+  <div class="panel">
+    <div class="stat-card" style="max-width:220px;">
+      <div class="value">{{ attempt.score }}/{{ attempt.total }}</div>
+      <div class="label">Your score</div>
+    </div>
+  </div>
+</div>
+{% endblock %}

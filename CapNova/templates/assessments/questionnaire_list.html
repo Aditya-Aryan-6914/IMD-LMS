@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Assessments{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>Assessments</h1>
+      <p>MCQ questionnaires for your enrolled courses.</p>
+    </div>
+    <a href="{% url 'trainee_dashboard' %}" class="btn btn-outline">Back to dashboard</a>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  {% if questionnaires %}
+    <ul class="item-list">
+      {% for q in questionnaires %}
+        <li class="item-row">
+          <div>
+            <div class="title">{{ q.title }}</div>
+            <div class="meta">{{ q.course.title }} &middot; Deadline: {{ q.deadline|date:"d M Y, H:i" }}</div>
+          </div>
+          {% if q.is_past_deadline %}
+            <span class="badge pending">Deadline passed</span>
+          {% else %}
+            <a href="{% url 'take_questionnaire' q.id %}" class="btn btn-primary">Attempt</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="empty-state">No assessments available right now.</p>
+  {% endif %}
+</div>
+{% endblock %}

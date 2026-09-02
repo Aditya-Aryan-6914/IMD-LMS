@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Competency map{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>Competency map</h1>
+      <p>Subjects and the trainers qualified to teach each one.</p>
+    </div>
+    <a href="{% url 'dashboard' %}" class="btn btn-outline">Back to dashboard</a>
+  </div>
+
+  {% if subjects %}
+    {% for subject in subjects %}
+      <div class="panel">
+        <h2>{{ subject.name }}</h2>
+        {% if subject.qualified_trainers.all %}
+          <ul class="item-list">
+            {% for trainer_profile in subject.qualified_trainers.all %}
+              <li class="item-row">
+                <div>
+                  <div class="title">{{ trainer_profile.user.full_name }}</div>
+                  <div class="meta">{{ trainer_profile.designation|default:"Trainer" }}</div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="empty-state">No trainer mapped to this subject yet.</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="empty-state">No subjects have been added yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

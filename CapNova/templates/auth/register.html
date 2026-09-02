@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}IMD Mausam -Register{% endblock %}
+{% block title %}IMD Mausam - Register{% endblock %}
 
 
 {% block content %}
@@ -30,66 +30,81 @@
         <h2>Create your account</h2>
         <p class="subtitle">Select your registration category to continue.</p>
 
+        {% include 'partials/messages.html' %}
+
         <div class="tabs" role="tablist" aria-label="Registration category">
-          <button type="button" role="tab" aria-selected="true" data-category="trainer" class="tab-btn is-active">
+          <button type="button" role="tab" aria-selected="{% if category == 'trainer' %}true{% else %}false{% endif %}" data-category="trainer" class="tab-btn {% if category == 'trainer' %}is-active{% endif %}">
             Trainer
           </button>
-          <button type="button" role="tab" aria-selected="false" data-category="trainee" class="tab-btn">
+          <button type="button" role="tab" aria-selected="{% if category == 'trainee' %}true{% else %}false{% endif %}" data-category="trainee" class="tab-btn {% if category == 'trainee' %}is-active{% endif %}">
             Trainee
           </button>
-          <button type="button" role="tab" aria-selected="false" data-category="public" class="tab-btn">
+          <button type="button" role="tab" aria-selected="{% if category == 'public' %}true{% else %}false{% endif %}" data-category="public" class="tab-btn {% if category == 'public' %}is-active{% endif %}">
             Public User
           </button>
         </div>
-<!-- action="% url 'register' %"-->
+
         <form method="post" class="register-form" novalidate>
           {% csrf_token %}
-          <input type="hidden" name="category" id="category-input" value="trainer">
+          <input type="hidden" name="category" id="category-input" value="{{ category|default:'trainer' }}">
 
           <div class="form-field">
-            <label for="full_name">Full name</label>
-            <input type="text" id="full_name" name="full_name" required placeholder="e.g. Ananya Sharma" />
+            <label for="{{ form.full_name.id_for_label }}">Full name</label>
+            <input type="text" id="{{ form.full_name.id_for_label }}" name="full_name"
+                   value="{{ form.full_name.value|default:'' }}" required placeholder="e.g. Ananya Sharma" />
+            {% if form.full_name.errors %}<div class="field-error">{{ form.full_name.errors.0 }}</div>{% endif %}
           </div>
 
-          <div class="form-field" id="employee_id_field">
-            <label for="employee_id">Employee ID</label>
-            <input type="text" id="employee_id" name="employee_id" required placeholder="e.g. IMD-2026-0142" />
+          <div class="form-field {% if category == 'public' %}is-hidden{% endif %}" id="employee_id_field">
+            <label for="{{ form.employee_id.id_for_label }}">Employee ID</label>
+            <input type="text" id="{{ form.employee_id.id_for_label }}" name="employee_id"
+                   value="{{ form.employee_id.value|default:'' }}" placeholder="e.g. IMD-2026-0142" />
+            {% if form.employee_id.errors %}<div class="field-error">{{ form.employee_id.errors.0 }}</div>{% endif %}
           </div>
 
-          <div id="public-fields" class="form-row is-hidden">
+          <div id="public-fields" class="form-row {% if category != 'public' %}is-hidden{% endif %}">
             <div class="form-field">
-              <label for="institute_name">Institute name</label>
-              <input type="text" id="institute_name" name="institute_name" placeholder="e.g. Savitribai Phule Pune University" />
+              <label for="{{ form.institute_name.id_for_label }}">Institute name</label>
+              <input type="text" id="{{ form.institute_name.id_for_label }}" name="institute_name"
+                     value="{{ form.institute_name.value|default:'' }}" placeholder="e.g. Savitribai Phule Pune University" />
+              {% if form.institute_name.errors %}<div class="field-error">{{ form.institute_name.errors.0 }}</div>{% endif %}
             </div>
             <div class="form-field">
-              <label for="graduation_year">Year of graduation</label>
-              <input type="number" id="graduation_year" name="graduation_year" placeholder="e.g. 2024" min="1950" max="2100" />
+              <label for="{{ form.graduation_year.id_for_label }}">Year of graduation</label>
+              <input type="number" id="{{ form.graduation_year.id_for_label }}" name="graduation_year"
+                     value="{{ form.graduation_year.value|default:'' }}" placeholder="e.g. 2024" min="1950" max="2100" />
+              {% if form.graduation_year.errors %}<div class="field-error">{{ form.graduation_year.errors.0 }}</div>{% endif %}
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-field">
-              <label for="email">Email address</label>
-              <input type="email" id="email" name="email" required placeholder="name@imd.gov.in" />
+              <label for="{{ form.email.id_for_label }}">Email address</label>
+              <input type="email" id="{{ form.email.id_for_label }}" name="email"
+                     value="{{ form.email.value|default:'' }}" required
+                     placeholder="{% if category == 'public' %}you@example.com{% else %}name@imd.gov.in{% endif %}" />
+              {% if form.email.errors %}<div class="field-error">{{ form.email.errors.0 }}</div>{% endif %}
             </div>
             <div class="form-field">
-              <label for="phone">Phone number</label>
-              <input type="tel" id="phone" name="phone" required placeholder="10-digit mobile" pattern="[0-9]{10}" />
+              <label for="{{ form.phone.id_for_label }}">Phone number</label>
+              <input type="tel" id="{{ form.phone.id_for_label }}" name="phone"
+                     value="{{ form.phone.value|default:'' }}" required placeholder="10-digit mobile" pattern="[0-9]{10}" />
+              {% if form.phone.errors %}<div class="field-error">{{ form.phone.errors.0 }}</div>{% endif %}
             </div>
-          </div>
-          <div class="form-field">
-            <div class="field-label-row">
-              <label for="password">Password</label>
-            </div>
-            <input type="password" id="password" name="password" required placeholder="Set your password" autocomplete="current-password" />
-          </div>
-          <div class="form-field">
-            <div class="field-label-row">
-              <label for="confirm_password">Confirm Password</label>
-            </div>
-            <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm your password" autocomplete="current-password" />
           </div>
 
+          <div class="form-field">
+            <label for="{{ form.password.id_for_label }}">Password</label>
+            <input type="password" id="{{ form.password.id_for_label }}" name="password" required
+                   placeholder="Set your password" autocomplete="new-password" />
+            {% if form.password.errors %}<div class="field-error">{{ form.password.errors.0 }}</div>{% endif %}
+          </div>
+          <div class="form-field">
+            <label for="{{ form.confirm_password.id_for_label }}">Confirm password</label>
+            <input type="password" id="{{ form.confirm_password.id_for_label }}" name="confirm_password" required
+                   placeholder="Confirm your password" autocomplete="new-password" />
+            {% if form.confirm_password.errors %}<div class="field-error">{{ form.confirm_password.errors.0 }}</div>{% endif %}
+          </div>
 
           <button type="submit" class="submit-btn">Register</button>
         </form>
@@ -107,11 +122,11 @@
     var buttons = document.querySelectorAll(".tab-btn");
     var categoryInput = document.getElementById("category-input");
     var publicFields = document.getElementById("public-fields");
-    var instituteInput = document.getElementById("institute_name");
-    var yearInput = document.getElementById("graduation_year");
+    var instituteInput = document.getElementById("{{ form.institute_name.id_for_label }}");
+    var yearInput = document.getElementById("{{ form.graduation_year.id_for_label }}");
     var employeeIdField = document.getElementById("employee_id_field");
-    var employeeIdInput = document.getElementById("employee_id");
-    var emailInput = document.getElementById("email");
+    var employeeIdInput = document.getElementById("{{ form.employee_id.id_for_label }}");
+    var emailInput = document.getElementById("{{ form.email.id_for_label }}");
 
     var copy = {
       trainer: { emailPlaceholder: "name@imd.gov.in" },

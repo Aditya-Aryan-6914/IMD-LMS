@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ questionnaire.title }}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>{{ questionnaire.title }}</h1>
+      <p>{{ questionnaire.course.title }} &middot; Deadline: {{ questionnaire.deadline|date:"d M Y, H:i" }}</p>
+    </div>
+    <a href="{% url 'questionnaire_list' %}" class="btn btn-outline">Cancel</a>
+  </div>
+
+  <div class="panel">
+    {% if questions %}
+      <form method="post">
+        {% csrf_token %}
+        {% for question in questions %}
+          <div class="question-block">
+            <div class="q-text">{{ forloop.counter }}. {{ question.text }}</div>
+            {% for choice in question.choices.all %}
+              <label class="choice-option">
+                <input type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" required>
+                {{ choice.text }}
+              </label>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit assessment</button>
+      </form>
+    {% else %}
+      <p class="empty-state">This questionnaire has no questions yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

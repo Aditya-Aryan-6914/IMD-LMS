@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My profile{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>My profile</h1>
+      <p>Designation, specialization and the subjects you can teach.</p>
+    </div>
+    <a href="{% url 'trainer_dashboard' %}" class="btn btn-outline">Back to dashboard</a>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  <div class="panel">
+    <form method="post" enctype="multipart/form-data" class="register-form" style="max-width:520px;">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="form-field">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.help_text %}<div class="meta">{{ field.help_text }}</div>{% endif %}
+          {% if field.errors %}<div class="field-error">{{ field.errors.0 }}</div>{% endif %}
+        </div>
+      {% endfor %}
+      <button type="submit" class="submit-btn" style="width:auto;">Save profile</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

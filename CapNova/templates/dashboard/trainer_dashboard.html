@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Trainer dashboard{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>Welcome, {{ user.full_name }}</h1>
+      <p>Trainer dashboard</p>
+    </div>
+    <a href="{% url 'logout' %}" class="btn btn-outline">Log out</a>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  <nav class="dash-nav">
+    <a href="{% url 'trainer_dashboard' %}">Overview</a>
+    <a href="{% url 'trainer_profile_edit' %}">My profile</a>
+    <a href="{% url 'trainer_library' %}">Library uploads</a>
+    <a href="{% url 'trainer_questionnaires' %}">Assessments &amp; participation</a>
+    <a href="{% url 'competency_map' %}">Competency map</a>
+  </nav>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="value">{{ courses|length }}</div>
+      <div class="label">Courses assigned</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">{{ total_trainees }}</div>
+      <div class="label">Trainees reached</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">{{ resources|length }}</div>
+      <div class="label">Recent library items</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>My courses</h2>
+    {% if courses %}
+      <ul class="item-list">
+        {% for course in courses %}
+          <li class="item-row">
+            <div>
+              <div class="title">{{ course.title }}</div>
+              <div class="meta">{{ course.subject.name }} &middot; {{ course.enrolled_count }} enrolled</div>
+            </div>
+            <span class="badge {% if course.is_published %}approved{% else %}pending{% endif %}">
+              {% if course.is_published %}Published{% else %}Draft{% endif %}
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty-state">No courses assigned yet. Ask an admin to assign one.</p>
+    {% endif %}
+  </div>
+
+  <div class="panel">
+    <h2>Recently uploaded to library</h2>
+    {% if resources %}
+      <ul class="item-list">
+        {% for resource in resources %}
+          <li class="item-row">
+            <div>
+              <div class="title">{{ resource.title }}</div>
+              <div class="meta">{{ resource.course.title }} &middot; {{ resource.get_resource_type_display }}</div>
+            </div>
+            <a href="{{ resource.file.url }}" class="btn btn-outline">Open</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty-state">You haven't uploaded any material yet.</p>
+    {% endif %}
+    <p style="margin-top:1rem;"><a href="{% url 'trainer_library' %}" class="btn btn-primary">Upload new material</a></p>
+  </div>
+</div>
+{% endblock %}

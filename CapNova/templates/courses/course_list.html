@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Browse courses{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>Browse courses</h1>
+      <p>Courses available for enrollment.</p>
+    </div>
+    <a href="{% url 'trainee_dashboard' %}" class="btn btn-outline">Back to dashboard</a>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  {% if courses %}
+    <div class="course-grid">
+      {% for course in courses %}
+        <div class="course-card">
+          <span class="subject">{{ course.subject.name }}</span>
+          <h3>{{ course.title }}</h3>
+          <p>{{ course.description|truncatewords:20 }}</p>
+          <a href="{% url 'course_detail' course.id %}" class="btn btn-primary">View course</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="empty-state">No new courses available right now.</p>
+  {% endif %}
+</div>
+{% endblock %}
