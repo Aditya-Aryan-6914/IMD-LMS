@@ -21,7 +21,11 @@ urlpatterns = [
     # to avoid a name collision on 'login'.
     path(
         'password-reset/',
-        auth_views.PasswordResetView.as_view(template_name='auth/password_reset.html'),
+        auth_views.PasswordResetView.as_view(
+            template_name='auth/password_reset.html',
+            subject_template_name='auth/password_reset_subject.txt',
+            email_template_name='auth/password_reset_email.html',
+        ),
         name='password_reset',
     ),
     path(

@@ -11,13 +11,24 @@
       <h1>Assessments &amp; participation</h1>
       <p>Monitor trainee participation and performance per questionnaire.</p>
     </div>
-    <a href="{% url 'trainer_dashboard' %}" class="btn btn-outline">Back to dashboard</a>
+    <div>
+      <a href="{% url 'trainer_dashboard' %}" class="btn btn-outline">Back to dashboard</a>
+      <a href="{% url 'create_questionnaire' %}" class="btn btn-primary">New questionnaire</a>
+    </div>
   </div>
+
+  {% include 'partials/messages.html' %}
 
   {% if questionnaires %}
     {% for q in questionnaires %}
       <div class="panel">
-        <h2>{{ q.title }} <span class="meta">&middot; {{ q.course.title }} &middot; Deadline {{ q.deadline|date:"d M Y" }}</span></h2>
+        <h2>
+          {{ q.title }}
+          <span class="meta">&middot; {{ q.course.title }} &middot; {{ q.questions.count }} question{{ q.questions.count|pluralize }} &middot; Deadline {{ q.deadline|date:"d M Y" }}</span>
+        </h2>
+        <p style="margin-top:-0.5rem;">
+          <a href="{% url 'manage_questionnaire' q.id %}" class="btn btn-outline">Manage questions</a>
+        </p>
         {% if q.attempts.all %}
           <table class="dash-table">
             <thead><tr><th>Trainee</th><th>Score</th><th>Submitted</th></tr></thead>
@@ -37,7 +48,7 @@
       </div>
     {% endfor %}
   {% else %}
-    <p class="empty-state">You haven't created any questionnaires yet. Use the Django admin to add one.</p>
+    <p class="empty-state">You haven't created any questionnaires yet. <a href="{% url 'create_questionnaire' %}" class="forgot-link">Create one</a>.</p>
   {% endif %}
 </div>
 {% endblock %}

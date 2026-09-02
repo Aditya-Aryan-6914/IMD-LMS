@@ -46,7 +46,12 @@
               <div class="title">{{ enrollment.course.title }}</div>
               <div class="meta">{{ enrollment.course.subject.name }} &middot; {{ enrollment.get_status_display }}</div>
             </div>
-            <a href="{% url 'course_detail' enrollment.course.id %}" class="btn btn-outline">Open</a>
+            <div>
+              {% if enrollment.status == 'completed' and enrollment.certificate %}
+                <a href="{% url 'download_certificate' enrollment.certificate.id %}" class="btn btn-primary">Certificate</a>
+              {% endif %}
+              <a href="{% url 'course_detail' enrollment.course.id %}" class="btn btn-outline">Open</a>
+            </div>
           </li>
         {% endfor %}
       </ul>

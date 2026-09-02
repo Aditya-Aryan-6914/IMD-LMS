@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Manage courses{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>Manage courses</h1>
+      <p>Create courses and assign trainers to them.</p>
+    </div>
+    <div>
+      <a href="{% url 'admin_dashboard' %}" class="btn btn-outline">Back to dashboard</a>
+      <a href="{% url 'admin_course_create' %}" class="btn btn-primary">New course</a>
+    </div>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  <div class="panel">
+    {% if courses %}
+      <table class="dash-table">
+        <thead>
+          <tr><th>Title</th><th>Subject</th><th>Trainer</th><th>Enrolled</th><th>Status</th><th></th></tr>
+        </thead>
+        <tbody>
+          {% for course in courses %}
+            <tr>
+              <td>{{ course.title }}</td>
+              <td>{{ course.subject.name }}</td>
+              <td>{{ course.trainer.full_name|default:"— unassigned —" }}</td>
+              <td>{{ course.enrolled_count }}</td>
+              <td>
+                <span class="badge {% if course.is_published %}approved{% else %}pending{% endif %}">
+                  {% if course.is_published %}Published{% else %}Draft{% endif %}
+                </span>
+              </td>
+              <td style="white-space:nowrap;">
+                <a href="{% url 'admin_course_edit' course.id %}" class="btn btn-outline">Edit</a>
+                <form method="post" action="{% url 'admin_course_toggle_publish' course.id %}" style="display:inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-outline">
+                    {% if course.is_published %}Unpublish{% else %}Publish{% endif %}
+                  </button>
+                </form>
+                <form method="post" action="{% url 'admin_course_delete' course.id %}" style="display:inline;"
+                      onsubmit="return confirm('Delete this course? This also removes its enrollments, resources and questionnaires.');">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="empty-state">No courses yet. Create the first one.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

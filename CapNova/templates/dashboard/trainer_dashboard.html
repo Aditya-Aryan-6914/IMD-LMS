@@ -50,9 +50,12 @@
               <div class="title">{{ course.title }}</div>
               <div class="meta">{{ course.subject.name }} &middot; {{ course.enrolled_count }} enrolled</div>
             </div>
-            <span class="badge {% if course.is_published %}approved{% else %}pending{% endif %}">
-              {% if course.is_published %}Published{% else %}Draft{% endif %}
-            </span>
+            <div>
+              <span class="badge {% if course.is_published %}approved{% else %}pending{% endif %}">
+                {% if course.is_published %}Published{% else %}Draft{% endif %}
+              </span>
+              <a href="{% url 'trainer_course_enrollments' course.id %}" class="btn btn-outline">Enrollments &amp; certificates</a>
+            </div>
           </li>
         {% endfor %}
       </ul>

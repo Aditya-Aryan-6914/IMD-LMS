@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}New questionnaire{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>New questionnaire</h1>
+      <p>Set a title, course and deadline -- you'll add questions on the next screen.</p>
+    </div>
+    <a href="{% url 'trainer_questionnaires' %}" class="btn btn-outline">Back to assessments</a>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  <div class="panel">
+    {% if form.course.field.queryset.exists %}
+      <form method="post" class="register-form" style="max-width:520px;">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="form-field">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}<div class="field-error">{{ field.errors.0 }}</div>{% endif %}
+          </div>
+        {% endfor %}
+        <button type="submit" class="submit-btn" style="width:auto;">Create &amp; add questions</button>
+      </form>
+    {% else %}
+      <p class="empty-state">You don't have any assigned courses to create a questionnaire for yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

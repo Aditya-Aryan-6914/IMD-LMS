@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ questionnaire.title }} -- questions{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>{{ questionnaire.title }}</h1>
+      <p>{{ questionnaire.course.title }} &middot; Deadline {{ questionnaire.deadline|date:"d M Y, H:i" }}</p>
+    </div>
+    <a href="{% url 'trainer_questionnaires' %}" class="btn btn-outline">Done</a>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  <div class="panel">
+    <h2>Questions ({{ questions|length }})</h2>
+    {% if questions %}
+      {% for question in questions %}
+        <div class="question-block">
+          <div class="q-text">{{ forloop.counter }}. {{ question.text }}</div>
+          {% for choice in question.choices.all %}
+            <div class="choice-option">
+              {% if choice.is_correct %}
+                <strong>&#10003; {{ choice.text }}</strong> <span class="meta">(correct)</span>
+              {% else %}
+                {{ choice.text }}
+              {% endif %}
+            </div>
+          {% endfor %}
+          <form method="post" action="{% url 'delete_question' questionnaire.id question.id %}"
+                style="margin-top:0.6rem;" onsubmit="return confirm('Remove this question?');">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Remove question</button>
+          </form>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="empty-state">No questions added yet. Add the first one below.</p>
+    {% endif %}
+  </div>
+
+  <div class="panel">
+    <h2>Add a question</h2>
+    <form method="post" class="register-form" style="max-width:560px;">
+      {% csrf_token %}
+      <div class="form-field">
+        <label for="{{ form.text.id_for_label }}">{{ form.text.label }}</label>
+        {{ form.text }}
+        {% if form.text.errors %}<div class="field-error">{{ form.text.errors.0 }}</div>{% endif %}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.choice_1.id_for_label }}">{{ form.choice_1.label }}</label>
+        {{ form.choice_1 }}
+        {% if form.choice_1.errors %}<div class="field-error">{{ form.choice_1.errors.0 }}</div>{% endif %}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.choice_2.id_for_label }}">{{ form.choice_2.label }}</label>
+        {{ form.choice_2 }}
+        {% if form.choice_2.errors %}<div class="field-error">{{ form.choice_2.errors.0 }}</div>{% endif %}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.choice_3.id_for_label }}">{{ form.choice_3.label }}</label>
+        {{ form.choice_3 }}
+        {% if form.choice_3.errors %}<div class="field-error">{{ form.choice_3.errors.0 }}</div>{% endif %}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.choice_4.id_for_label }}">{{ form.choice_4.label }}</label>
+        {{ form.choice_4 }}
+        {% if form.choice_4.errors %}<div class="field-error">{{ form.choice_4.errors.0 }}</div>{% endif %}
+      </div>
+      <div class="form-field">
+        <label>{{ form.correct_choice.label }}</label>
+        {% for radio in form.correct_choice %}
+          <label class="choice-option">{{ radio.tag }} {{ radio.choice_label }}</label>
+        {% endfor %}
+        {% if form.correct_choice.errors %}<div class="field-error">{{ form.correct_choice.errors.0 }}</div>{% endif %}
+      </div>
+      <button type="submit" class="submit-btn" style="width:auto;">Add question</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

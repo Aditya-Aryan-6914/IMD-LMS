@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Certificate verification{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>Certificate verification</h1>
+      <p>Certificate No. {{ certificate_number }}</p>
+    </div>
+    <a href="{% url 'home' %}" class="btn btn-outline">Home</a>
+  </div>
+
+  <div class="panel">
+    {% if certificate %}
+      <p class="badge approved" style="margin-bottom:1rem;">Valid certificate</p>
+      <table class="dash-table">
+        <tbody>
+          <tr><th>Trainee</th><td>{{ certificate.enrollment.trainee.full_name }}</td></tr>
+          <tr><th>Course</th><td>{{ certificate.enrollment.course.title }}</td></tr>
+          <tr><th>Subject</th><td>{{ certificate.enrollment.course.subject.name }}</td></tr>
+          <tr><th>Issued</th><td>{{ certificate.issued_at|date:"d M Y" }}</td></tr>
+        </tbody>
+      </table>
+    {% else %}
+      <p class="badge pending" style="margin-bottom:1rem;">Not found</p>
+      <p class="empty-state">No certificate matches this number. Double-check it and try again.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

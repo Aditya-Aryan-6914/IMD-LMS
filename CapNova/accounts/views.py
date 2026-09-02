@@ -84,7 +84,7 @@ def dashboard_router(request):
 @role_required(User.Role.TRAINEE)
 def trainee_dashboard(request):
     profile, _ = TraineeProfile.objects.get_or_create(user=request.user)
-    enrollments = Enrollment.objects.filter(trainee=request.user).select_related("course")
+    enrollments = Enrollment.objects.filter(trainee=request.user).select_related("course", "certificate")
     enrolled_ids = enrollments.values_list("course_id", flat=True)
     available_courses = Course.objects.exclude(id__in=enrolled_ids).filter(is_published=True)[:6]
 

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -140,9 +141,41 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
+#
+# Password reset (PasswordResetView, wired up in CapNova/urls.py) sends
+# real email through this backend. With no SMTP credentials set, it falls
+# back to printing the email to the console -- nothing to configure for
+# local dev, which is what this project shipped with before (the old
+# `MAILERS` dict below was never a real Django setting, so it silently did
+# nothing; Django's actual default without EMAIL_BACKEND set is the SMTP
+# backend, which would have just failed to connect).
+#
+# For real email delivery, set these as environment variables before
+# running the server (systemd unit, docker-compose, your host's env
+# config, etc. -- or `export` them locally / a .env loader if you add one):
+#
+#   EMAIL_HOST_USER      -- SMTP username (e.g. a Gmail address using an
+#                            app password, or your SMTP provider's username)
+#   EMAIL_HOST_PASSWORD  -- SMTP password / API key
+#   EMAIL_HOST           -- SMTP server, default smtp.gmail.com
+#   EMAIL_PORT           -- SMTP port, default 587
+#   EMAIL_USE_TLS        -- "true"/"false", default true
+#   EMAIL_USE_SSL        -- "true"/"false", default false (use instead of
+#                            TLS for providers on port 465)
+#   DEFAULT_FROM_EMAIL   -- default "IMD LMS <noreply@imd-lms.local>"
+#
+# See .env.example at the repo root for a copy-pasteable template.
 
-MAILERS = {
-    'default': {
-        'BACKEND': 'django.core.mail.backends.console.EmailBackend',
-    },
-}
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+
+if EMAIL_HOST_USER and EMAIL_HOST_PASSWORD:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
+    EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
+    EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'true').lower() == 'true'
+    EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', 'false').lower() == 'true'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'IMD LMS <noreply@imd-lms.local>')

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% if editing %}Edit course{% else %}New course{% endif %}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>{% if editing %}Edit course{% else %}New course{% endif %}</h1>
+      <p>{% if editing %}Update details for "{{ course.title }}".{% else %}Add a course and assign a trainer to it.{% endif %}</p>
+    </div>
+    <a href="{% url 'admin_course_list' %}" class="btn btn-outline">Back to courses</a>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  <div class="panel">
+    {% if not form.subject.field.queryset.exists %}
+      <p class="empty-state">
+        No subjects exist yet.
+        <a href="{% url 'admin_subject_create' %}" class="forgot-link">Add a subject first</a>.
+      </p>
+    {% else %}
+      <form method="post" class="register-form" style="max-width:560px;">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="form-field">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}<div class="meta">{{ field.help_text }}</div>{% endif %}
+            {% if field.errors %}<div class="field-error">{{ field.errors.0 }}</div>{% endif %}
+          </div>
+        {% endfor %}
+        <button type="submit" class="submit-btn" style="width:auto;">
+          {% if editing %}Save changes{% else %}Create course{% endif %}
+        </button>
+      </form>
+      <p class="meta" style="margin-top:1rem;">
+        Need a new subject? <a href="{% url 'admin_subject_create' %}" class="forgot-link">Add one here</a>.
+      </p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

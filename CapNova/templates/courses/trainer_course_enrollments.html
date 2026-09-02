@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ course.title }} -- enrollments{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>{{ course.title }}</h1>
+      <p>Trainees enrolled &middot; mark complete to issue a certificate.</p>
+    </div>
+    <a href="{% url 'trainer_dashboard' %}" class="btn btn-outline">Back to dashboard</a>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  <div class="panel">
+    {% if enrollments %}
+      <table class="dash-table">
+        <thead>
+          <tr><th>Trainee</th><th>Status</th><th>Certificate</th><th></th></tr>
+        </thead>
+        <tbody>
+          {% for enrollment in enrollments %}
+            <tr>
+              <td>{{ enrollment.trainee.full_name }}</td>
+              <td>
+                <span class="badge {% if enrollment.status == 'completed' %}approved{% else %}pending{% endif %}">
+                  {{ enrollment.get_status_display }}
+                </span>
+              </td>
+              <td>
+                {% if enrollment.certificate %}
+                  <a href="{% url 'download_certificate' enrollment.certificate.id %}" class="btn btn-outline">
+                    {{ enrollment.certificate.certificate_number }}
+                  </a>
+                {% else %}
+                  <span class="empty-state">Not issued</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if enrollment.status != 'completed' %}
+                  <form method="post" action="{% url 'mark_enrollment_complete' enrollment.id %}"
+                        onsubmit="return confirm('Mark {{ enrollment.trainee.full_name }} complete and issue a certificate?');">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Mark complete</button>
+                  </form>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="empty-state">No trainees enrolled in this course yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

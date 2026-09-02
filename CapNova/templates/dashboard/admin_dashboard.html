@@ -19,8 +19,9 @@
 
   <nav class="dash-nav">
     <a href="{% url 'admin_dashboard' %}">Overview</a>
+    <a href="{% url 'admin_course_list' %}">Manage courses</a>
     <a href="{% url 'competency_map' %}">Competency map</a>
-    <a href="/admin/">Full admin (courses, announcements, questionnaires)</a>
+    <a href="/admin/">Full admin (announcements, questionnaires)</a>
   </nav>
 
   <div class="stat-grid">
@@ -68,10 +69,11 @@
   <div class="panel">
     <h2>Manage content</h2>
     <p class="meta">
-      Courses, learning resources, questionnaires and homepage announcements
-      are currently managed from the
-      <a href="/admin/" class="forgot-link">Django admin</a> while dedicated
-      in-app screens are built out (see handover.md).
+      Courses can now be created and assigned to trainers from
+      <a href="{% url 'admin_course_list' %}" class="forgot-link">Manage courses</a>.
+      Learning resources, questionnaires and homepage announcements are
+      still managed from the <a href="/admin/" class="forgot-link">Django admin</a>
+      while dedicated in-app screens are built out (see handover.md).
     </p>
   </div>
 </div>

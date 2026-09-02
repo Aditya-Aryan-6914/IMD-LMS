@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}New subject{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<div class="dash-shell">
+  <div class="dash-header">
+    <div>
+      <h1>New subject</h1>
+      <p>Subjects group courses and drive the competency map.</p>
+    </div>
+    <a href="{% url 'admin_course_create' %}" class="btn btn-outline">Back to new course</a>
+  </div>
+
+  {% include 'partials/messages.html' %}
+
+  <div class="panel">
+    <form method="post" class="register-form" style="max-width:520px;">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="form-field">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.errors %}<div class="field-error">{{ field.errors.0 }}</div>{% endif %}
+        </div>
+      {% endfor %}
+      <button type="submit" class="submit-btn" style="width:auto;">Add subject</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
