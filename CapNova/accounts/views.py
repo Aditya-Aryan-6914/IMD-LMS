@@ -4,6 +4,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from typing import cast
 
 from courses.models import Course, Enrollment, LearningResource, Subject
 from .decorators import role_required
@@ -47,13 +48,15 @@ def login_view(request):
             user = authenticate(request, username=email, password=password)
             if user is None:
                 messages.error(request, "Invalid email or password.")
-            elif not user.is_active:
-                messages.error(request, "This account has been deactivated.")
-            elif not user.is_approved:
-                messages.error(request, "Your account is pending admin approval.")
             else:
-                auth_login(request, user)
-                return redirect("dashboard")
+                user = cast(User, user)
+                if not user.is_active:
+                    messages.error(request, "This account has been deactivated.")
+                elif not user.is_approved:
+                    messages.error(request, "Your account is pending admin approval.")
+                else:
+                    auth_login(request, user)
+                    return redirect("dashboard")
         else:
             messages.error(request, "Please enter a valid email and password.")
 
